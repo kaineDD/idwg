@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interdimensional Travel</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: black;
+      color: #00ffe7;
+      overflow: hidden;
+    }
+
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.2;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #00ffe7;
+      text-shadow: 0 0 10px #00ffe7;
+    }
+
+    button {
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #111;
+      background-color: #00ffe7;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00ccc2;
+    }
+
+    #output {
+      margin-top: 30px;
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #00ffe7;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      text-align: left;
+    }
+
+    #dimension-image {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop class="bg-video" id="bgVideo">
+    <source src="https://cdn.pixabay.com/vimeo/869293912/space-169226.mp4?width=1280&hash=2ff4114e14511935b0b9f94923253a79c7458d56" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <div class="overlay">
+    <h1>🌌 Interdimensional Travel 🌌</h1>
+    <button onclick="travel()">Enter Dimension</button>
+    <button onclick="goDeeper()">Go Deeper</button>
+    <div id="output"></div>
+    <img id="dimension-image" src="" alt="Dimension View" />
+  </div>
+
+  <script>
+    const techLevels = ["Stone Age", "Steampunk", "Modern", "Cyberpunk", "Post-Apocalyptic", "Alien-Run", "AI Dominated"];
+    const societies = ["Peaceful", "War-Torn", "Utopian", "Dystopian", "Hive Minded", "Nomadic", "Ruled by Animals"];
+    const weather = ["Always raining", "Blazing sun", "Frozen tundra", "Floating islands", "Eternal night", "Electric storms"];
+    const weirdness = ["Time runs backward", "Gravity shifts randomly", "No spoken language", "Dreams control reality", "Everything glows", "Inhabitants are clones"];
+    const mood = ["Hopeful", "Melancholic", "Chaotic", "Serene", "Tense", "Playful", "Mysterious"];
+    const deepLore = [
+      "This dimension is caught in a loop of its own forgotten history.",
+      "An ancient AI here still protects the ruins of a lost civilization.",
+      "Dreams are currency in this reality — those who sleep too long become gods.",
+      "The world itself is conscious. It watches. It waits.",
+      "No one has ever died here… and no one remembers why."
+    ];
+
+    const images = [
+      "https://images.unsplash.com/photo-1614850523454-cf4d3f5de75e?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1535448033526-cdb6eef8eac6?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1579124601694-320d0fce8ac7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1602791213983-83684c7b7999?auto=format&fit=crop&w=1000&q=80"
+    ];
+
+    const videos = [
+      "https://cdn.pixabay.com/vimeo/869293912/space-169226.mp4?width=1280&hash=2ff4114e14511935b0b9f94923253a79c7458d56",
+      "https://cdn.pixabay.com/vimeo/493802121/nebula-103413.mp4?width=1280&hash=26d9ed7f7ffaf77d4e3ec080bf170190405180b7",
+      "https://cdn.pixabay.com/vimeo/722631602/void-122501.mp4?width=1280&hash=5f870f89b010b92997e09f94266f5df037403ce3"
+    ];
+
+    let currentDimension = "";
+
+    function getRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function travel() {
+      const id = Math.floor(Math.random() * 999999).toString().padStart(6, "0");
+      currentDimension = `
+🌐 Dimension #${id}
+
+🧠 Tech Level: ${getRandom(techLevels)}
+🌍 Society: ${getRandom(societies)}
+🌦️ Weather: ${getRandom(weather)}
+🌀 Weirdness: ${getRandom(weirdness)}
+🎭 Mood: ${getRandom(mood)}
+
+📝 Simulation:
+This dimension split from our timeline thousands of cycles ago.
+It evolved under new laws of logic, physics, and fate.
+Now you glimpse a clone of Earth — but twisted, alien, and unknown...
+      `;
+
+      document.getElementById("output").innerText = currentDimension;
+      document.getElementById("dimension-image").src = getRandom(images);
+      document.getElementById("bgVideo").src = getRandom(videos);
+    }
+
+    function goDeeper() {
+      if (currentDimension === "") {
+        document.getElementById("output").innerText = "You must enter a dimension first.";
+        return;
+      }
+      const deeperLore = getRandom(deepLore);
+      document.getElementById("output").innerText += `\n🔍 Deeper Simulation:\n${deeperLore}`;
+    }
+  </script>
+</body>
+</html>
